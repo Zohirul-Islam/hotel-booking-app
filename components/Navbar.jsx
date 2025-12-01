@@ -1,8 +1,9 @@
 
 import Link from "next/link"
 import Image from "next/image"
-
-const Navbar = ({sideMenu}) => {
+import {auth} from '@/auth'
+const Navbar = async({ sideMenu }) => {
+  const session = await auth();
   return (
     <nav className="max-w-7xl flex mx-auto justify-between px-4 py-4 absolute top-0 w-full left-0 right-0 z-50;">
     <Link href="/">
@@ -33,8 +34,14 @@ const Navbar = ({sideMenu}) => {
         <Link href="/bookings">Bookings</Link>
       </li>
 
-      <li>
-        <Link href="/login" className="bg-primary px-6 py-3 text-white font-bold rounded-md">Login</Link>
+            <li>
+              {
+                session?.user ? (<div>
+                  <span className="mx-1">{session?.user?.name}</span>
+                  <span> | </span>
+                </div>):(<Link href="/login" className="bg-primary px-6 py-3 text-white font-bold rounded-md">Login</Link>)
+              }
+        
       </li>
     </ul>
         )
