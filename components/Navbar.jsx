@@ -1,7 +1,8 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import {auth} from '@/auth'
+import { auth } from '@/auth'
+import Logout from '@/components/auth/Logout'
 const Navbar = async({ sideMenu }) => {
   const session = await auth();
   return (
@@ -39,6 +40,7 @@ const Navbar = async({ sideMenu }) => {
                 session?.user ? (<div>
                   <span className="mx-1">{session?.user?.name}</span>
                   <span> | </span>
+                  <Logout/>
                 </div>):(<Link href="/login" className="bg-primary px-6 py-3 text-white font-bold rounded-md">Login</Link>)
               }
         

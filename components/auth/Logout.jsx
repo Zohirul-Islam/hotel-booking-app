@@ -1,8 +1,9 @@
+'use client'
 import React from 'react'
-
+import { signOut } from 'next-auth/react'
 const Logout = () => {
   return (
-    <button>Sign Out</button>
+    <button onClick={()=>signOut({callbackUrl:"http://localhost:3000/login"})}>Sign Out</button>
   )
 }
 
