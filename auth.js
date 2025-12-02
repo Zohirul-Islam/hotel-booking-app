@@ -10,7 +10,10 @@ export const {
     signIn,
     signOut
 } = NextAuth({
-  adapter:MongoDBAdapter(mongoClientPromise,{databaseName:process.env.ENVIRONMENT}),
+  adapter: MongoDBAdapter(mongoClientPromise, { databaseName: process.env.ENVIRONMENT }),
+  session: {
+    strategy:"jwt"
+  },
   providers: [
     CredentialsProvider({
       credentials: {

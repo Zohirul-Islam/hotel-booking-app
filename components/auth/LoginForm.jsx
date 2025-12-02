@@ -8,7 +8,7 @@ const LoginForm = () => {
   async function onSubmit(event) {
     event.preventDefault();
     try {
-      const formData = new formData(event.currentTarget);
+      const formData = new FormData(event.currentTarget);
       const response = await login(formData);
       if (!!response.error) {
         setError(response.error.message)
