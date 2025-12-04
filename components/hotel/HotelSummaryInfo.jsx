@@ -1,4 +1,5 @@
 import { HotelRating } from "./HotelRating";
+import HotelReview from "./HotelReview";
 
 const HotelSummaryInfo = ({fromListPage,info}) => {
   return (
@@ -7,12 +8,8 @@ const HotelSummaryInfo = ({fromListPage,info}) => {
         <h2 className={fromListPage ? "font-bold text-lg" : "font-bold text-2xl"}>{info?.name }</h2>
         <p>📍 { info?.city}</p>
         <div className="flex gap-2 items-center my-4">
-{/*           <div className="bg-primary w-[35px] h-[35px] rounded-sm text-white grid place-items-center font-bold">
-            5.3
-          </div>
-          <span className="font-medium">Very Good</span> */}
           <HotelRating id={ info?.id} />
-          <span>232 Reviews</span>
+          <HotelReview id={ info?.id}/>
         </div>
             <div>
             <span className="bg-yellow-300 p-1 rounded-md">{info?.propertyCategory } Star Property</span>
