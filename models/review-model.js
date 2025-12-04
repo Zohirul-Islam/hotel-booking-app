@@ -1,6 +1,6 @@
 
 import mongoose from "mongoose";
-
+import { ObjectId } from "mongodb";
 const reviewSchema = new mongoose.Schema({
     hotelId: {
         type: ObjectId,
