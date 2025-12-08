@@ -1,6 +1,6 @@
 import { HotelRating } from "./HotelRating";
-import HotelReview from "./HotelReview";
-
+import HotelReview from "./HotelReview"
+import Link from "next/link";
 const HotelSummaryInfo = ({fromListPage,info}) => {
   return (
     <>
@@ -20,7 +20,7 @@ const HotelSummaryInfo = ({fromListPage,info}) => {
         <h2 className="text-2xl font-bold text-right">${(info?.highRate + info?.lowRate) }/night</h2>
         <p className=" text-right">Per Night for 4 Rooms</p>
         {
-          fromListPage ? (<button className="btn-primary ">Details</button>) : (<button className="btn-primary ">Book</button>)
+          fromListPage ? (<Link href={`/hotels/${info?.id}`} className="btn-primary ">Details</Link>) : (<button className="btn-primary ">Book</button>)
         }
       </div>
     </>

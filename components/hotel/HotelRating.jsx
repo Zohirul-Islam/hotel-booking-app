@@ -4,7 +4,7 @@ import { getRatings } from "../../queries";
 export const HotelRating = async ({ id }) => {
   const ratings = await getRatings(id);
 
-  // ✅ Rating description function
+  
   const getRatingDescription = (averageRating) => {
     if (averageRating === 0) return "No Rating Available";
     if (averageRating <= 2) return "Poor";
@@ -13,13 +13,11 @@ export const HotelRating = async ({ id }) => {
     return "Very Good";
   };
 
-  // ✅ Calculate average using reduce safely
+  
   const averageRating =
     ratings.length === 0
       ? 0
       : ratings.reduce((acc, item) => acc + item.rating, 0) / ratings.length;
-
-  // ✅ Round to 1 decimal place
   const roundedRating = averageRating.toFixed(1);
 
   return (
