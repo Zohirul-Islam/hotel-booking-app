@@ -6,14 +6,14 @@ import { getHotelById } from "../../../../queries"
 const HotelDetailsPage = async ({ params }) => {
   const resolvedParams = await params; 
   const id = resolvedParams.id;
-  
   const hotelInfo = await getHotelById(id);
   console.log(hotelInfo);
+
   return (
     <>
         <Summary hotelInfo ={hotelInfo} />
-        <Gallery gallery={hotelInfo?.gallery } />
-        <Overview />
+        <Gallery gallery = {hotelInfo?.gallery} />
+      <Overview overview={hotelInfo?.overview } />
     </>
   )
 }
