@@ -1,14 +1,14 @@
 "use client"
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react';
-const Search = ({ fromList }) => {
+const Search = ({ fromList,destination,checkin,checkout }) => {
   const searchParams = useSearchParams();
   const pathName = usePathname();
   const { replace } = useRouter();
   const [searchTerm, setSearchTerm] = useState({
-    destination: "",
-    checkin: '',
-    checkout: ''
+    destination:destination || "Puglia",
+    checkin: checkin || '',
+    checkout: checkout || ''
   });
   const [allowSearch, setAllowSearch] = useState(true);
   const handleInputs = (e) => {
@@ -22,6 +22,19 @@ const Search = ({ fromList }) => {
     }
     setSearchTerm(state);
   }
+  const doSearch = (event) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("destination", searchTerm?.destination);
+    if (searchTerm?.checkin && searchTerm?.checkout) {
+      params.set('checkin', searchTerm?.checkin);
+      params.set('checkout', searchTerm?.checkout);
+    }
+    if (pathName.includes('hotels')) {
+      replace(`${pathName}?${params.toString()}`)
+    } else {
+      replace(`${pathName}hotels?${params.toString()}`)
+    }
+  }
   return (
     <>
       <div className="lg:max-h-[250px] mt-6">
@@ -31,6 +44,7 @@ const Search = ({ fromList }) => {
             <h4 className="mt-2">
               <select
                 name="destination"
+                defaultValue={searchTerm.destination}
                 id="destination"
                 onChange={handleInputs}
               >
@@ -49,6 +63,7 @@ const Search = ({ fromList }) => {
               <input
                 type="date"
                 name="checkin"
+                value={searchTerm.checkin}
                 id="checkin"
                 onChange={handleInputs}
               />
@@ -60,6 +75,7 @@ const Search = ({ fromList }) => {
             <h4 className="mt-2">
               <input type="date"
                 name="checkout"
+                value={searchTerm.checkout}
                 id="checkout"
                 onChange={handleInputs}
               />
@@ -68,7 +84,7 @@ const Search = ({ fromList }) => {
         </div>
       </div>
 
-      <button disabled ={!allowSearch} className="search-btn">🔍️ {fromList ? "Modify Search": "Search"}</button>
+      <button onClick={doSearch} disabled ={!allowSearch} className="search-btn">🔍️ {fromList ? "Modify Search": "Search"}</button>
     </>
   );
 };
