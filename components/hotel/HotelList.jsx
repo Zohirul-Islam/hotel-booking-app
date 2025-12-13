@@ -1,15 +1,15 @@
 import { getAllHotels } from "../../queries";
 import HotelCard from "./HotelCard";
 
-const HotelList = async () => {
-  const allhotels = await getAllHotels();
+const HotelList = async ({destination,checkin,checkout}) => {
+  const allhotels = await getAllHotels(destination,checkin,checkout);
   
   return (
     <div className="col-span-9">
       <div className="space-y-4">
         {
           allhotels.map((hotel) => (
-            <HotelCard key={hotel.id} hotelInfo ={hotel} />
+            <HotelCard key={hotel.id} hotelInfo ={hotel} checkin ={checkin} checkout ={checkout} />
           ))
         }
        

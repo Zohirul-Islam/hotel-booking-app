@@ -3,11 +3,15 @@ import Gallery from "@/components/hotel/details/Gallery"
 import Overview from "@/components/hotel/details/Overview"
 import { getHotelById } from "../../../../queries"
 
-const HotelDetailsPage = async ({ params }) => {
-  const resolvedParams = await params; 
+const HotelDetailsPage = async ({ params,searchParams }) => {
+  const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
   const id = resolvedParams.id;
-  const hotelInfo = await getHotelById(id);
-  console.log(hotelInfo);
+  const checkin = resolvedSearchParams.checkin;
+  const checkout = resolvedSearchParams.checkout;
+  const hotelInfo = await getHotelById(id,checkin,checkout);
+
+  
 
   return (
     <>
