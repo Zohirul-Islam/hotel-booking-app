@@ -25,7 +25,7 @@ const HotelSummaryInfo = ({ fromListPage, info, checkin, checkout }) => {
         <h2 className="text-2xl font-bold text-right">${(info?.highRate + info?.lowRate) }/night</h2>
         <p className=" text-right">Per Night for 4 Rooms</p>
         {
-          fromListPage ? (<Link href={`/hotels/${info?.id}${params}`} className="btn-primary ">Details</Link>) : (<button className={info?.isBooked ? 'btn-disabled':"btn-primary"}>Book</button>)
+          fromListPage ? (<Link href={`/hotels/${info?.id}${params}`} className="btn-primary ">Details</Link>) : (<Link href={info?.isBooked ? "#":`/hotels/${info?.id}/payment${params}`} className={info?.isBooked ? 'btn-disabled':"btn-primary"}>Book</Link>)
         }
       </div>
     </>
